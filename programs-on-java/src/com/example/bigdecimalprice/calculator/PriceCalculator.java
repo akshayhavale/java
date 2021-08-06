@@ -12,6 +12,7 @@ public class PriceCalculator {
 		getFinalProductPriceWithTaxAdded();
 		
 		//667.88
+		System.out.println(getTaxRate(new BigDecimal(667.23), new BigDecimal(566)));
 		
 	}
 
@@ -28,5 +29,13 @@ public class PriceCalculator {
 		productPrice = new BigDecimal(667.23);
 		System.out.println(productPrice.setScale(2, RoundingMode.UP));
 		return null;
+	}
+	
+	public static Double getTaxRate(BigDecimal soldPrice, BigDecimal basePrice) {
+		
+		BigDecimal value = soldPrice.subtract(basePrice);
+		double doubleValue = value.divide(new BigDecimal(100)).doubleValue();
+		return doubleValue;
+		
 	}
 }
