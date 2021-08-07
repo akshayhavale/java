@@ -13,5 +13,7 @@ public interface Interface1 {
 	public default void defaultMethod() {
 		System.out.println("DEFAULT METHOD OF INTERFACE1");
 	}
+	
+	
 }
 
