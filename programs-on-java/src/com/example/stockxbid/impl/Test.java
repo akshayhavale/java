@@ -5,7 +5,7 @@ public class Test {
 	public static void main(String [] args) {
 		
 		
-		SequenceGenerator seq = new SequenceGenerator();
+		SequenceGenerator seq = (SequenceGenerator) SequenceGenerator.readResolve();
 		System.out.println(seq.nextId());
 	}
 

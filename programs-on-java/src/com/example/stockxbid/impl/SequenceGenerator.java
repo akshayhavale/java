@@ -1,11 +1,24 @@
 package com.example.stockxbid.impl;
 
+import java.io.Serializable;
 import java.net.NetworkInterface;
 import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.Enumeration;
 
-public class SequenceGenerator {
+/**
+ * https://www.callicoder.com/distributed-unique-ID-sequence-number-generator/
+ * 
+ * @author akshayhavale
+ *
+ */
+public class SequenceGenerator implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1575999632793629656L;
+
 	private static final int UNUSED_BITS = 1; // Sign bit, Unused (always set to 0)
 	private static final int EPOCH_BITS = 41;
 	private static final int NODE_ID_BITS = 10;
@@ -22,16 +35,26 @@ public class SequenceGenerator {
 	private volatile long lastTimestamp = -1L;
 	private volatile long sequence = 0L;
 
-	// Create SequenceGenerator with a nodeId
-	public SequenceGenerator(int nodeId) {
-		if (nodeId < 0 || nodeId > maxNodeId) {
-			throw new IllegalArgumentException(String.format("NodeId must be between %d and %d", 0, maxNodeId));
-		}
-		this.nodeId = nodeId;
+	/**
+	 * 
+	 * To make this class as singleton by
+	 * 
+	 * https://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-examples#bill-pugh-singleton
+	 */
+	private static class SingletonHelper {
+		private static final SequenceGenerator INSTANCE = new SequenceGenerator();
+	}
+
+	private static SequenceGenerator getInstance() {
+		return SingletonHelper.INSTANCE;
+	}
+
+	protected static Object readResolve() {
+		return getInstance();
 	}
 
 	// Let SequenceGenerator generate a nodeId
-	public SequenceGenerator() {
+	private SequenceGenerator() {
 		this.nodeId = createNodeId();
 	}
 

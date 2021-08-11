@@ -1,52 +1,110 @@
 package com.example.stockxbid.uniquehashcode;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class OrderNumber {
+public class OrderNumber implements Serializable {
 
-	private Long orderId;
-	private Long orderProductId;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8259330332570932370L;
+
+	private Integer quantity;
+	private Long shoppingCartItemId;
+	private Long shoppingCartId;
+	private Long customerId;
 	private Long userId;
-	private Timestamp timestamp;
+	//private Timestamp timeStamp;
 
-	public OrderNumber(Long orderId, Long orderProductId, Long userId, Timestamp timestamp) {
+	public OrderNumber() {
+	}
+
+	public OrderNumber(Integer quantity, Long shoppingCartItemId, Long shoppingCartId, Long customerId, Long userId,
+			Timestamp timeStamp) {
 		super();
-		this.orderId = orderId;
-		this.orderProductId = orderProductId;
+		this.quantity = quantity;
+		this.shoppingCartItemId = shoppingCartItemId;
+		this.shoppingCartId = shoppingCartId;
+		this.customerId = customerId;
 		this.userId = userId;
-		this.timestamp = timestamp;
+	//	this.timeStamp = timeStamp;
 	}
 
-	public Long getOrderId() {
-		return orderId;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
+	public void setShoppingCartItemId(Long shoppingCartItemId) {
+		this.shoppingCartItemId = shoppingCartItemId;
 	}
 
-	public Long getOrderProductId() {
-		return orderProductId;
+	public void setShoppingCartId(Long shoppingCartId) {
+		this.shoppingCartId = shoppingCartId;
 	}
 
-	public void setOrderProductId(Long orderProductId) {
-		this.orderProductId = orderProductId;
-	}
-
-	public Long getUserId() {
-		return userId;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public Timestamp getTimestamp() {
-		return timestamp;
+//	public void setTimeStamp(Timestamp timeStamp) {
+//		this.timeStamp = timeStamp;
+//	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
+		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
+		result = prime * result + ((shoppingCartId == null) ? 0 : shoppingCartId.hashCode());
+		result = prime * result + ((shoppingCartItemId == null) ? 0 : shoppingCartItemId.hashCode());
+	//	result = prime * result + ((timeStamp == null) ? 0 : timeStamp.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		return result;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderNumber other = (OrderNumber) obj;
+		if (customerId == null) {
+			if (other.customerId != null)
+				return false;
+		} else if (!customerId.equals(other.customerId))
+			return false;
+		if (quantity == null) {
+			if (other.quantity != null)
+				return false;
+		} else if (!quantity.equals(other.quantity))
+			return false;
+		if (shoppingCartId == null) {
+			if (other.shoppingCartId != null)
+				return false;
+		} else if (!shoppingCartId.equals(other.shoppingCartId))
+			return false;
+		if (shoppingCartItemId == null) {
+			if (other.shoppingCartItemId != null)
+				return false;
+		} else if (!shoppingCartItemId.equals(other.shoppingCartItemId))
+			return false;
+	
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
+		return true;
 	}
 
 }
