@@ -4,6 +4,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.Instant;
 
+/**
+ * this is best way to generate orderId
+ * @author akshayhavale
+ *
+ */
 public class SqGenerator {
 
 	// Custom Epoch (January 1, 2015 Midnight UTC = 2015-01-01T00:00:00Z)
