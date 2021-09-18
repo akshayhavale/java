@@ -28,4 +28,9 @@ public class Person {
 		return "Person [name=" + name + ", actions=" + actions + "]";
 	}
 
+	public void work() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
