@@ -41,12 +41,10 @@ public class Test {
 				temp = temp + c;
 			} else {
 				words.add(temp);
-				System.out.println("First String = " + temp);
 				uniqueFinder.clear();
 				temp = "";
 				temp = temp + c;
 				uniqueFinder.add(c);
-				System.out.println("Second String = " + temp);
 			}
 
 		}
